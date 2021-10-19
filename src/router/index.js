@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
-// import PersonalCenter from '@/components/PersonalCenter'
-// import QuickQuestion from '@/components/QuickQuestion'
-// import SelectQuestion from '@/components/SelectQuestion'
-// import SelectMaster from '@/components/SelectMaster'
-// import SureOrder from '@/components/SureOrder'
+import QuickQuestion from '@/components/QuickQuestion'
+import PersonalCenter from '@/components/PersonalCenter'
+import SelectQuestion from '@/components/SelectQuestion'
+import SelectMaster from '@/components/SelectMaster'
+import SureOrder from '@/components/SureOrder'
 // import PaySuccess from '@/components/PaySuccess'
 // import CreatArchives from '@/components/CreatArchives'
 // import SelectArchives from '@/components/SelectArchives'
-// import SearchMaster from '@/components/SearchMaster'
-// import MasterList from '@/components/MasterList'
-// import MasterDetail from '@/components/MasterDetail'
+import SearchMaster from '@/components/SearchMaster'
+import MasterList from '@/components/MasterList'
+import MasterDetail from '@/components/MasterDetail'
 // import Topic from '@/components/Topic'
 // import TopicDetail from '@/components/TopicDetail'
 // import Coupon from '@/components/Coupon'
@@ -26,9 +26,9 @@ import Home from '@/components/Home'
 // import ArchivesDetail from '@/components/ArchivesDetail'
 // import PersonArchives from '@/components/PersonArchives'
 // import PersonCoupon from '@/components/PersonCoupon'
-// import Phone from '@/components/Phone'
+import Phone from '@/components/Phone'
 // import ShortcutPhone from '@/components/ShortcutPhone'
-// import Login from '@/components/Login'
+import Login from '@/components/Login'
 // import PersonSet from '@/components/PersonSet'
 // import FollowTeacher from '@/components/FollowTeacher'
 // import Test from '@/components/Test'
@@ -36,8 +36,10 @@ Vue.use(Router)
 
 const router = new Router({
   // mode: 'history',
-  routes: [
-    { path: "/", redirect: '/home' },
+  routes: [{
+      path: "/",
+      redirect: '/home'
+    },
     // {
     //   path: '/test',
     //   name: 'test',
@@ -56,24 +58,28 @@ const router = new Router({
     //   meta: { title: "设置" },
     //   component: PersonSet
     // },
-    // {
-    //   path: '/login',
-    //   name: 'login',
-    //   meta: { title: "登录" },
-    //   component: Login
-    // },
+    {
+      path: '/login',
+      name: 'login',
+      meta: {
+        title: "登录"
+      },
+      component: Login
+    },
     // {
     //   path: '/shortcutPhone',
     //   name: 'shortcutPhone',
     //   meta: { title: "快捷电话" },
     //   component: ShortcutPhone
     // },
-    // {
-    //   path: '/phone',
-    //   name: 'phone',
-    //   meta: { title: "手机号码" },
-    //   component: Phone
-    // },
+    {
+      path: '/phone',
+      name: 'phone',
+      meta: {
+        title: "手机号码"
+      },
+      component: Phone
+    },
     // {
     //   path: '/personCoupon',
     //   name: 'personCoupon',
@@ -95,39 +101,53 @@ const router = new Router({
     {
       path: '/home',
       name: 'home',
-      meta: { title: "问易台" },
+      meta: {
+        title: "问易台"
+      },
       component: Home
     },
-    // {
-    //   path: '/PersonalCenter',
-    //   name: 'personalCenter',
-    //   meta: { title: "个人中心" },
-    //   component: PersonalCenter
-    // },
-    // {
-    //   path: '/quickQuestion',
-    //   name: 'quickQuestion',
-    //   meta: { title: "快速提问" },
-    //   component: QuickQuestion
-    // },
-    // {
-    //   path: '/selectQuestion',
-    //   name: 'selectQuestion',
-    //   meta: { title: "婚恋感情-提问" },
-    //   component: SelectQuestion
-    // },
-    // {
-    //   path: '/selectMaster',
-    //   name: 'selectMaster',
-    //   meta: { title: "选老师" },
-    //   component: SelectMaster
-    // },
-    // {
-    //   path: '/sureOrder',
-    //   name: 'sureOrder',
-    //   meta: { title: "确定订单" },
-    //   component: SureOrder
-    // },
+
+
+    {
+      path: '/PersonalCenter',
+      name: 'personalCenter',
+      meta: {
+        title: "个人中心"
+      },
+      component: PersonalCenter
+    },
+    {
+      path: '/quickQuestion',
+      name: 'quickQuestion',
+      meta: {
+        title: "快速提问"
+      },
+      component: QuickQuestion
+    },
+    {
+      path: '/selectQuestion',
+      name: 'selectQuestion',
+      meta: {
+        title: "婚恋感情-提问"
+      },
+      component: SelectQuestion
+    },
+    {
+      path: '/selectMaster',
+      name: 'selectMaster',
+      meta: {
+        title: "选老师"
+      },
+      component: SelectMaster
+    },
+    {
+      path: '/sureOrder',
+      name: 'sureOrder',
+      meta: {
+        title: "确定订单"
+      },
+      component: SureOrder
+    },
     // {
     //   path: '/paySuccess',
     //   name: 'paySuccess',
@@ -146,22 +166,28 @@ const router = new Router({
     //   meta: { title: "选择档案" },
     //   component: SelectArchives
     // },
-    // {
-    //   path: '/searchMaster',
-    //   name: 'searchMaster',
-    //   meta: { title: "找老师" },
-    //   component: SearchMaster
-    // },
-    // {
-    //   path: '/masterList',
-    //   name: 'masterList',
-    //   component: MasterList
-    // }, {
-    //   path: '/masterDetail',
-    //   name: 'masterDetail',
-    //   meta: { title: "" },
-    //   component: MasterDetail
-    // },
+    {
+      path: '/searchMaster',
+      name: 'searchMaster',
+      meta: {
+        title: "找老师"
+      },
+      component: SearchMaster
+    },
+    {
+      path: '/masterList',
+      name: 'masterList',
+      component: MasterList
+    },
+
+    {
+      path: '/masterDetail',
+      name: 'masterDetail',
+      meta: {
+        title: ""
+      },
+      component: MasterDetail
+    },
     // {
     //   path: '/topic',
     //   name: 'topic',
@@ -231,11 +257,11 @@ const router = new Router({
   ]
 })
 
-router.beforeEach((to, from, next) => {//beforeEach是router的钩子函数，在进入路由前执行
-  if (to.meta.title) {//判断是否有标题
+router.beforeEach((to, from, next) => { //beforeEach是router的钩子函数，在进入路由前执行
+  if (to.meta.title) { //判断是否有标题
     document.title = to.meta.title
   }
-  next()//执行进入路由，如果不写就不会进入目标页
+  next() //执行进入路由，如果不写就不会进入目标页
 })
 
 
