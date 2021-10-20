@@ -12,8 +12,9 @@ import SureOrder from '@/components/SureOrder'
 import SearchMaster from '@/components/SearchMaster'
 import MasterList from '@/components/MasterList'
 import MasterDetail from '@/components/MasterDetail'
-// import Topic from '@/components/Topic'
-// import TopicDetail from '@/components/TopicDetail'
+import Topic from '@/components/Topic'
+import TopicDetail from '@/components/TopicDetail'
+
 // import Coupon from '@/components/Coupon'
 // import Order from '@/components/Order'
 // import OrderDetail from '@/components/OrderDetail'
@@ -26,8 +27,9 @@ import MasterDetail from '@/components/MasterDetail'
 // import ArchivesDetail from '@/components/ArchivesDetail'
 // import PersonArchives from '@/components/PersonArchives'
 // import PersonCoupon from '@/components/PersonCoupon'
+
 import Phone from '@/components/Phone'
-// import ShortcutPhone from '@/components/ShortcutPhone'
+import ShortcutPhone from '@/components/ShortcutPhone'
 import Login from '@/components/Login'
 // import PersonSet from '@/components/PersonSet'
 // import FollowTeacher from '@/components/FollowTeacher'
@@ -66,12 +68,12 @@ const router = new Router({
       },
       component: Login
     },
-    // {
-    //   path: '/shortcutPhone',
-    //   name: 'shortcutPhone',
-    //   meta: { title: "快捷电话" },
-    //   component: ShortcutPhone
-    // },
+    {
+      path: '/shortcutPhone',
+      name: 'shortcutPhone',
+      meta: { title: "快捷电话" },
+      component: ShortcutPhone
+    },
     {
       path: '/phone',
       name: 'phone',
@@ -188,18 +190,18 @@ const router = new Router({
       },
       component: MasterDetail
     },
-    // {
-    //   path: '/topic',
-    //   name: 'topic',
-    //   meta: { title: "话题快测" },
-    //   component: Topic
-    // },
-    // {
-    //   path: '/topicDetail',
-    //   name: 'topicDetail',
-    //   meta: { title: "话题快测" },
-    //   component: TopicDetail
-    // },
+    {
+      path: '/topic',
+      name: 'topic',
+      meta: { title: "话题快测" },
+      component: Topic
+    },
+    {
+      path: '/topicDetail',
+      name: 'topicDetail',
+      meta: { title: "话题快测" },
+      component: TopicDetail
+    },
     // {
     //   path: '/coupon',
     //   name: 'coupon',

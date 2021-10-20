@@ -9,7 +9,7 @@
         <div>等待回复</div>
       </div>
     </div>
-    <div class="sureorder-server">
+    <div class="sureorder-server" v-if="treatment_type===2">
       <div class="sureorder-server-title">服务类型</div>
       <div class="sureorder-server-type">
         <!---->
@@ -25,7 +25,7 @@
       <div class="sureorder-ordermessage-title">订单信息</div>
       <div class="sureorder-ordermessage-text">
         <div class="sureorder-ordermessage-text-t">
-          <div>测算类型</div>
+          <div>{{leftShow}}</div>
           <div>{{rightShow}}</div>
         </div>
         <!---->
@@ -53,7 +53,6 @@
       </div>
     </div>
     <!---->
-    <!-- action="http://kc.ywhwl.com/api/wap_pay" -->
     <div class="quickquestion-btn">
       <form method="post" action="http://kc.ywhwl.com/api/wap_pay" @submit.prevent="setOrdNumber">
         <input type="hidden" name="cate_id" v-model="classifyId" />
@@ -273,7 +272,7 @@ export default {
     this.timestamp = this.getTimeStamp();
     var order = JSON.parse(localStorage.getItem("orderMessage"));
     console.log(order);
-    if (order.type == "快速提问") {
+    if (order.type === "快速提问") {
       this.serverType = 3;
       this.orderMessage = order;
       this.relPrice = this.orderMessage.fast_text;
@@ -284,7 +283,7 @@ export default {
       this.treatment_type = 1;
       this.gre_id = order.gre_id;
       this.question = order.customProblem;
-    } else if (order.type == "找大师") {
+    } else if (order.type === "找大师") {
       this.orderMessage = order;
       this.relPrice = this.orderMessage.price;
       this.leftShow = "大师名称";
@@ -299,7 +298,7 @@ export default {
       } else {
         this.treatment_type = 1;
       }
-    } else if (order.type == "话题快测") {
+    } else if (order.type === "话题快测") {
       this.orderMessage = order;
       this.relPrice = this.orderMessage.price;
       this.leftShow = "话题名称";
@@ -308,7 +307,7 @@ export default {
       this.ord_type = 0;
       this.type_id = order.topicId;
       this.treatment_type = 0;
-    } else if ((order.type = "快捷电话")) {
+    } else if (order.type === "快捷电话") {
       this.orderMessage = order;
       this.relPrice = this.orderMessage.price;
       this.leftShow = "快捷电话";

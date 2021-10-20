@@ -6,7 +6,7 @@
     <div class="phone-input">
       <input placeholder="请输入密码" v-model="password" :type="!yin?'text':'password'" />
       <div class="phone-input-code">
-        <span>忘记密码</span>
+        <span @click="rePhone">忘记密码</span>
         <div class="phone-input-forget">
           <img
             @click="reYin"

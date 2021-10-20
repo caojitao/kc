@@ -5,7 +5,7 @@
     </div>
     <div class="phone-input">
       <input type="text" placeholder="请输入验证码" v-model="code" />
-      <button class="phone-input-code" @click="getCode">获取验证码</button>
+      <button class="phone-input-code" @click="getCode">{{timeNum}}</button>
     </div>
     <div class="phone-input">
       <input type="password" placeholder="请设置密码" name="1" v-model="password" />
@@ -60,7 +60,7 @@ export default {
         }
         if (this.code != this.loginCode) {
           Toast({
-            message: "请验证码输入错误",
+            message: "验证码输入错误",
             position: "bottom",
             duration: 2000
           });
@@ -107,7 +107,6 @@ export default {
             .then(res => {
               if (res.data.code == "200") {
                 var that = this;
-
                 Toast({
                   message: "修改成功",
                   position: "bottom",
