@@ -21,8 +21,8 @@ import TopicDetail from '@/components/TopicDetail'
 // import OrderFinshed from '@/components/OrderFinshed'
 // import Evaluate from '@/components/Evaluate'
 // import EvaluateFinshed from '@/components/EvaluateFinshed'
-// import Feedback from '@/components/Feedback'
-// import AboutUs from '@/components/AboutUs'
+import Feedback from '@/components/Feedback'
+import AboutUs from '@/components/AboutUs'
 // import TodayFortune from '@/components/TodayFortune'
 // import ArchivesDetail from '@/components/ArchivesDetail'
 // import PersonArchives from '@/components/PersonArchives'
@@ -31,7 +31,7 @@ import TopicDetail from '@/components/TopicDetail'
 import Phone from '@/components/Phone'
 import ShortcutPhone from '@/components/ShortcutPhone'
 import Login from '@/components/Login'
-// import PersonSet from '@/components/PersonSet'
+import PersonSet from '@/components/PersonSet'
 // import FollowTeacher from '@/components/FollowTeacher'
 // import Test from '@/components/Test'
 Vue.use(Router)
@@ -54,12 +54,12 @@ const router = new Router({
     //   meta: { title: "关注老师" },
     //   component: FollowTeacher
     // },
-    // {
-    //   path: '/personSet',
-    //   name: 'personSet',
-    //   meta: { title: "设置" },
-    //   component: PersonSet
-    // },
+    {
+      path: '/personSet',
+      name: 'personSet',
+      meta: { title: "设置" },
+      component: PersonSet
+    },
     {
       path: '/login',
       name: 'login',
@@ -71,7 +71,9 @@ const router = new Router({
     {
       path: '/shortcutPhone',
       name: 'shortcutPhone',
-      meta: { title: "快捷电话" },
+      meta: {
+        title: "快捷电话"
+      },
       component: ShortcutPhone
     },
     {
@@ -193,13 +195,17 @@ const router = new Router({
     {
       path: '/topic',
       name: 'topic',
-      meta: { title: "话题快测" },
+      meta: {
+        title: "话题快测"
+      },
       component: Topic
     },
     {
       path: '/topicDetail',
       name: 'topicDetail',
-      meta: { title: "话题快测" },
+      meta: {
+        title: "话题快测"
+      },
       component: TopicDetail
     },
     // {
@@ -238,18 +244,20 @@ const router = new Router({
     //   meta: { title: "评价" },
     //   component: EvaluateFinshed
     // },
-    // {
-    //   path: '/feedback',
-    //   name: 'feedback',
-    //   meta: { title: "意见反馈" },
-    //   component: Feedback
-    // },
-    // {
-    //   path: '/aboutUs',
-    //   name: 'aboutUs',
-    //   meta: { title: "关于我们" },
-    //   component: AboutUs
-    // },
+    {
+      path: '/feedback',
+      name: 'feedback',
+      meta: { title: "意见反馈" },
+      component: Feedback
+    },
+    {
+      path: '/aboutUs',
+      name: 'aboutUs',
+      meta: {
+        title: "关于我们"
+      },
+      component: AboutUs
+    },
     // {
     //   path: '/todayFortune',
     //   name: 'todayFortune',

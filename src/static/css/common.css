@@ -1893,18 +1893,18 @@ i.weui-tabbar__icon {
   border-radius: 5px
 }
 
-.creatArchives .creatArchives-top img[data-v-1e3961ee] {
+.creatArchives .creatArchives-top img {
   width: 100%;
   height: 90px
 }
 
-.creatArchives .creatArchives-message[data-v-1e3961ee] {
+.creatArchives .creatArchives-message {
   padding: 0 12px;
   background: #fff;
   box-shadow: 0 1px 2px #ddd
 }
 
-.creatArchives .creatArchives-message>div[data-v-1e3961ee] {
+.creatArchives .creatArchives-message>div {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -1922,16 +1922,16 @@ i.weui-tabbar__icon {
   border-bottom: 1px solid #ddd
 }
 
-.creatArchives .creatArchives-message>div img[data-v-1e3961ee] {
+.creatArchives .creatArchives-message>div img {
   width: 10px;
   height: 10px
 }
 
-.creatArchives .creatArchives-message>div[data-v-1e3961ee]:last-child {
+.creatArchives .creatArchives-message>div:last-child {
   border-bottom: none
 }
 
-.creatArchives .creatArchives-message .shu[data-v-1e3961ee] {
+.creatArchives .creatArchives-message .shu {
   height: 25px;
   text-align: right;
   border: none;
@@ -1941,21 +1941,21 @@ i.weui-tabbar__icon {
   font-size: 16px
 }
 
-.creatArchives .creatArchives-message input[data-v-1e3961ee]::input-placeholder {
+.creatArchives .creatArchives-message input::input-placeholder {
   color: #ccc !important;
   font-size: 14px
 }
 
-.creatArchives .creatArchives-message input[data-v-1e3961ee]::-webkit-input-placeholder {
+.creatArchives .creatArchives-message input::-webkit-input-placeholder {
   color: #ccc !important;
   font-size: 14px
 }
 
-.creatArchives .creatArchives-message .nan[data-v-1e3961ee] {
+.creatArchives .creatArchives-message .nan {
   margin-right: 20px
 }
 
-.creatArchives .quickquestion-btn[data-v-1e3961ee] {
+.creatArchives .quickquestion-btn {
   width: 100%;
   padding: 0 12px;
   bottom: 15px;
@@ -1963,7 +1963,7 @@ i.weui-tabbar__icon {
   box-sizing: border-box
 }
 
-.creatArchives .quickquestion-btn div[data-v-1e3961ee] {
+.creatArchives .quickquestion-btn div {
   width: 100%;
   text-align: center;
   height: 50px;
@@ -6171,13 +6171,13 @@ i.weui-tabbar__icon {
   line-height: 1.4
 }
 
-.feedback .feedback-text[data-v-013af39b] {
+.feedback .feedback-text {
   background: #fff;
   padding: 15px 26px;
   box-sizing: border-box
 }
 
-.feedback .feedback-text textarea[data-v-013af39b] {
+.feedback .feedback-text textarea {
   padding: 11px;
   box-sizing: border-box;
   background: #f9f9f9;
@@ -6190,13 +6190,13 @@ i.weui-tabbar__icon {
   font-family: PingFang SC
 }
 
-.feedback .feedback-btn[data-v-013af39b] {
+.feedback .feedback-btn {
   padding: 0 12px;
   box-sizing: border-box;
   margin-top: 25px
 }
 
-.feedback .feedback-btn div[data-v-013af39b] {
+.feedback .feedback-btn div {
   display: block;
   background: #50b6db;
   color: #fff;
@@ -6210,7 +6210,7 @@ i.weui-tabbar__icon {
   border-radius: 3px
 }
 
-.aboutus .aboutus-top[data-v-0a9eb8cc] {
+.aboutus .aboutus-top {
   width: 100%;
   height: 100px;
   background: #fff;
@@ -6231,19 +6231,19 @@ i.weui-tabbar__icon {
   box-shadow: 0 1px 2px #ddd
 }
 
-.aboutus .aboutus-top .aboutus-top-img img[data-v-0a9eb8cc] {
+.aboutus .aboutus-top .aboutus-top-img img {
   width: 120px;
   height: 30px
 }
 
-.aboutus .aboutus-top .aboutus-top-edition[data-v-0a9eb8cc] {
+.aboutus .aboutus-top .aboutus-top-edition {
   color: #666;
   font-size: 13px;
   font-weight: Regular;
   font-family: PingFang-SC-Regular
 }
 
-.aboutus .aboutus-intro[data-v-0a9eb8cc] {
+.aboutus .aboutus-intro {
   width: 100%;
   background: #fff;
   padding: 15px 12px;
@@ -6252,7 +6252,7 @@ i.weui-tabbar__icon {
   box-shadow: 0 1px 2px #ddd
 }
 
-.aboutus .aboutus-intro .aboutus-intro-text[data-v-0a9eb8cc] {
+.aboutus .aboutus-intro .aboutus-intro-text {
   color: #222;
   font-size: 16px;
   font-weight: 700;
@@ -6261,7 +6261,7 @@ i.weui-tabbar__icon {
   margin-bottom: 10px
 }
 
-.aboutus .aboutus-intro .aboutus-introtext[data-v-0a9eb8cc] {
+.aboutus .aboutus-intro .aboutus-introtext {
   color: #666;
   font-size: 13px;
   font-weight: Regular;
@@ -6270,7 +6270,7 @@ i.weui-tabbar__icon {
   text-indent: 2em
 }
 
-.aboutus .aboutus-contact[data-v-0a9eb8cc] {
+.aboutus .aboutus-contact {
   width: 100%;
   background: #fff;
   padding: 15px 12px;
@@ -6278,7 +6278,7 @@ i.weui-tabbar__icon {
   box-shadow: 0 1px 2px #ddd
 }
 
-.aboutus .aboutus-contact .aboutus-contact-text[data-v-0a9eb8cc] {
+.aboutus .aboutus-contact .aboutus-contact-text {
   color: #222;
   font-size: 16px;
   font-weight: 700;
@@ -6287,7 +6287,7 @@ i.weui-tabbar__icon {
   margin-bottom: 10px
 }
 
-.aboutus .aboutus-contact .aboutus-contactext[data-v-0a9eb8cc] {
+.aboutus .aboutus-contact .aboutus-contactext {
   color: #666;
   font-size: 13px;
   font-weight: Regular;
@@ -8787,7 +8787,7 @@ button.weui-vcode-btn {
   text-align: center
 }
 
-.creatArchives .creatArchives-top[data-v-5ad32406] {
+.creatArchives .creatArchives-top {
   color: #666;
   font-weight: Regular;
   font-size: 13px;
@@ -8811,11 +8811,11 @@ button.weui-vcode-btn {
   margin-bottom: 10px
 }
 
-.creatArchives .creatArchives-top .creatArchives-input[data-v-5ad32406] {
+.creatArchives .creatArchives-top .creatArchives-input {
   position: relative
 }
 
-.creatArchives .creatArchives-top input[type=file][data-v-5ad32406] {
+.creatArchives .creatArchives-top input[type=file] {
   opacity: 0;
   width: 75px;
   height: 80px;
@@ -8827,25 +8827,25 @@ button.weui-vcode-btn {
   border-radius: 50%
 }
 
-.creatArchives .creatArchives-top img[data-v-5ad32406] {
+.creatArchives .creatArchives-top img {
   width: 75px;
   height: 75px;
   border-radius: 50%
 }
 
-.creatArchives .creatArchives-message[data-v-5ad32406] {
+.creatArchives .creatArchives-message {
   background: #fff;
   box-shadow: 0 1px 2px #ddd
 }
 
-.creatArchives .creatArchives-message .phone-input[data-v-5ad32406] {
+.creatArchives .creatArchives-message .phone-input {
   background: #fff;
   box-shadow: 0 1px 2px #ddd;
   border-bottom: 1px solid #ddd;
   position: relative
 }
 
-.creatArchives .creatArchives-message .phone-input .phone-input-code[data-v-5ad32406] {
+.creatArchives .creatArchives-message .phone-input .phone-input-code {
   position: absolute;
   color: #222;
   font-size: 12px;
@@ -8862,7 +8862,7 @@ button.weui-vcode-btn {
   background: #fff
 }
 
-.creatArchives .creatArchives-message .phone-input input[data-v-5ad32406] {
+.creatArchives .creatArchives-message .phone-input input {
   width: 80%;
   border: none;
   font-size: 14px;
@@ -8870,7 +8870,7 @@ button.weui-vcode-btn {
   height: 100%
 }
 
-.creatArchives .creatArchives-message>div[data-v-5ad32406] {
+.creatArchives .creatArchives-message>div {
   padding: 0 12px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -8889,16 +8889,16 @@ button.weui-vcode-btn {
   border-bottom: 1px solid #ddd
 }
 
-.creatArchives .creatArchives-message>div img[data-v-5ad32406] {
+.creatArchives .creatArchives-message>div img {
   width: 10px;
   height: 10px
 }
 
-.creatArchives .creatArchives-message>div[data-v-5ad32406]:last-child {
+.creatArchives .creatArchives-message>div:last-child {
   border-bottom: none
 }
 
-.creatArchives .creatArchives-message .gen[data-v-5ad32406] {
+.creatArchives .creatArchives-message .gen {
   color: 13px;
   color: #50b6db;
   border: 1px solid #62bddf;
@@ -8906,7 +8906,7 @@ button.weui-vcode-btn {
   padding: 0 2px
 }
 
-.creatArchives .creatArchives-message .shu[data-v-5ad32406] {
+.creatArchives .creatArchives-message .shu {
   height: 25px;
   text-align: right;
   border: none;
@@ -8916,21 +8916,21 @@ button.weui-vcode-btn {
   font-size: 16px
 }
 
-.creatArchives .creatArchives-message input[data-v-5ad32406]::input-placeholder {
+.creatArchives .creatArchives-message input::input-placeholder {
   color: #ccc !important;
   font-size: 14px
 }
 
-.creatArchives .creatArchives-message input[data-v-5ad32406]::-webkit-input-placeholder {
+.creatArchives .creatArchives-message input::-webkit-input-placeholder {
   color: #ccc !important;
   font-size: 14px
 }
 
-.creatArchives .creatArchives-message .nan[data-v-5ad32406] {
+.creatArchives .creatArchives-message .nan {
   margin-right: 20px
 }
 
-.creatArchives .quickquestion-btn[data-v-5ad32406] {
+.creatArchives .quickquestion-btn {
   width: 100%;
   padding: 0 12px;
   bottom: 15px;
@@ -8938,7 +8938,7 @@ button.weui-vcode-btn {
   box-sizing: border-box
 }
 
-.creatArchives .quickquestion-btn div[data-v-5ad32406] {
+.creatArchives .quickquestion-btn div {
   width: 100%;
   text-align: center;
   height: 50px;

@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <div class="phone-btn">
+    <div class="phone-btn" @click="login">
       <div>登录</div>
     </div>
     <div class="phone-re" @click="reSet">

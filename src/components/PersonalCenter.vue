@@ -15,7 +15,9 @@
           />
         </div>
         <!---->
-        <div class="personalcenter-message-title">问易君</div>
+        <div
+          class="personalcenter-message-title"
+        >{{useMessage.nickName?useMessage.nickName:"问易君"+useMessage.mem_id}}</div>
         <!---->
         <div class="personalcenter-message-sex">
           <!---->
@@ -94,7 +96,7 @@
               />
             </div>
           </a>
-          <a href="#/aboutUs" class="personalcenter-bottom-list">
+          <a @click="reAboutUs" class="personalcenter-bottom-list">
             <div class="personalcenter-bottom-list-left">
               <div class="personalcenter-bottom-left-img">
                 <img
@@ -133,12 +135,10 @@
       </div>
       <div class="weui-tabbar">
         <a href="javascript:;" class="weui-tabbar__item">
-          <div class="weui-tabbar__icon">
+          <div class="weui-tabbar__icon" @click="reHome">
             <img
               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAABCCAYAAADjVADoAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkRFRUZDOTdGRDExODExRThCRkM0RDQzRTMxMEFGNjkxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkRFRUZDOTgwRDExODExRThCRkM0RDQzRTMxMEFGNjkxIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6REVFRkM5N0REMTE4MTFFOEJGQzRENDNFMzEwQUY2OTEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6REVFRkM5N0VEMTE4MTFFOEJGQzRENDNFMzEwQUY2OTEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6CCcdJAAAMKElEQVR42tSc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"
             />
-            <!---->
-            <!---->
           </div>
           <p class="weui-tabbar__label">
             <span icon-class>问易台</span>
@@ -146,11 +146,9 @@
         </a>
         <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
           <div class="weui-tabbar__icon">
-            <!---->
             <img
               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAABCCAYAAADjVADoAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkRGNjZBOEVDRDExODExRThBODVFQUYxQ0M5RTUyODdFIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkRGNjZBOEVERDExODExRThBODVFQUYxQ0M5RTUyODdFIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6REY2NkE4RUFEMTE4MTFFOEE4NUVBRjFDQzlFNTI4N0UiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6REY2NkE4RUJEMTE4MTFFOEE4NUVBRjFDQzlFNTI4N0UiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7e8mzgAAAFuklEQVR42uya+U8cZRjH3z04FspyCVIoFSqlYNFataAharTGo141qdVE4xkTf/I/8hfb9Ac1VaPpofVItd5ajamxtlhQwLZWRIQWYWV9HvczdtzMIsvO7Oyy8yTfsC3L7vt+5nmfaya0fd8J47FFRDHRWtF1os2iLlG7qIHfhUWzot9E46Jh0deiz0RDoinRvJeLjBrvbQMAruJ1p6hF1Ojw3lYA6XvWifoA8ik//ypGEHWiK0X3iO4UbcQ7/s/iSL1mq+ik6KBoPx5ytphAXCLaLnpItIl/h5b5WV0coetFe0Uvi74vBhDq3jtFD4v6cwBgtwZUjbfsEn0rShYqiGbR/aJnRFd4ALlHVCNKiHaLvnPrg8MuLrJctA0IvR7GnjbR46IHAF9QICo4BveSHkPGW1sDiDs4LgUDopmFbTH5sz6+c50b+3ADRIj64GbcNl8WIyMNZKhJ8g6ijYJprcsxZymmhdkgXuE7iF6uSrXJv1VyHHsKAUQHFWTMBxC6/vWsocxPEFHcsy0PmWKxtN1CwA75BWIVPUWl8dfquRhhv0DUAsNvq2YtUb9AVOGaflsZMSriF4hCsVCuMSpXEBdEfxYACF3D+VwGN7l2nzpam8nwO13UsOgYLfTVy4wnw7TcMVLlGof3zLCWhF8g/hBNmNS8MT1z/C46ItpDanuCMjySpce9KXqFOcRjGUAohJ/99IgFc3HYuiHtnE6Zi0PYGYJqO1d1KaZwD4veEL0LzNsywNI1nPUzRhib+8861BgdZBb1nP14x1KGKeriH4teEH1ADFDQlzm87wfRiMlxyh3peeQ5N4JVHXOIVWmpVadJ50xqxniORS/g5uo9SZsSANMr+yHQ9vJ/OgF/VnQTn2vZeQAfxCuMX0dDbUz0EbOBlrTf6RV8Em/Rjf0oel70CY2aNmxNbE6v+inRF6IvRSfYaLfoQdGtJjUEtttp0XsEU+M3CHXJ46J3KHPb7R6HpzzNZg+wQT3z3wCqnkA7x1U9bnPzQQDf7RAkJ0Wfi74CmO8grKj9OjOJnWnVpsahGxierMaNhwmmx9h0kqNSwTGLk24VwlYHTzMAeE006sYG3AKhmzkq2keAHHBoi7vxjFsAoBsZAuIcEFqYLagXbcQL4g7fd4rvOkAMKRgQVnV3mIBZztQqPSs1o14GKmdIrQnAaePUCszyRbLUbjxw0q3Fu31fYwx3tc58pmqylkyQjc2RdfTzdxFrTKGCMKS/PQQ+jRe3c+5zsVky00sciRG3F+3Vvc9fCYoTZAE9BpsIltnYJLFE0+n7wDjjxYK9vBs+bUuTA5THGjcuJZVWEhcitnJ93tZJWhDeoroc87J9zcfzEVpRvk3P0UQg7KLmqAeK9aDIJM3TEO4/zt9Pe73IfICwzvgoOkpb3kggraCGmCeDTHjl/l6AqMKtl/r3SYefvyCnaVO97bXJYvqUAOgFk+UjA9FlALgc91Y3r8atF7Js3S0lbQsO2RTJcvxmNXAzBOoRUu2UmyBqiPi99AbtBLw4AS9bEF6YBWLW1sGOA8OqYqeXCyLGle+n3h+kl4ia4rAknqHV7iGTev7qp0yjxegiR0B7gh2iGzkGcVNcFuJCNnARjzDyO+TkHU4gWvGAHQxC6kxxm/WUXhPzjHpqk9HFQOim7xI9RTVYZlaOxSn3G9nXi/amLZrWCOmDYI+uQAj2/V5LUNUK9lWTmrb/C0Jb3j5GYv0rFIIdxhayy0mC6Jw1L+hgHNZv/jscXalWRf+zjZLgHzo1jNLuI6CUijWxZ729cFo9Qp8/usak7huUmvWw984wL7qKqFByO17onbfNCkIHpZ2mdK3TArGeIqpUTffeHeZFTQmD0EJrdZhaPFzCIHTvjWHjz/ORhWaxcIl7g2WRAAItewAiZckAhC1iBhaACEAEIAIQAYilgwhgCAOFUBtwMLU6oRmiAy1lm/hbgAEAiMgqKTtvZosAAAAASUVORK5CYII="
             />
-            <!---->
           </div>
           <p class="weui-tabbar__label">
             <span icon-class>个人中心</span>
@@ -158,7 +156,7 @@
         </a>
       </div>
     </div>
-    <div class="personalcenter-black">
+    <div class="personalcenter-black" v-if="!uid">
       <div class="personalcenter-black-login">
         <div class="personalcenter-black-login-title">需要登录</div>
         <div class="personalcenter-black-login-search"></div>
@@ -257,6 +255,16 @@ export default {
     }
   },
   methods: {
+    reAboutUs() {
+      this.$router.push({
+        name: "aboutUs"
+      });
+    },
+    reHome() {
+      this.$router.push({
+        name: "home"
+      });
+    },
     copyText() {
       var that = this;
       if (Clipboard.isSupported()) {
@@ -553,6 +561,8 @@ export default {
 
       sites: setShare
     });
+
+    console.log(this.$store.state.useMessage);
   }
 };
 </script>
