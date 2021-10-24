@@ -2,10 +2,10 @@
   <div class="creatArchives">
     <div class="creatArchives-top">
       <div>
-        <img src="http://kccdn.ywhwl.com/img/yqpWrTTVVo7ReytWmFhsemzbS4U5KPA3FjKDLlbW.png" alt />
+        <img :src="src" alt />
       </div>
       <div class="creatArchives-input">
-        <input type="file" id="file" />
+        <input type="file" id="file" @change="getFile" />
         <label for="file">上传头像</label>
       </div>
     </div>
@@ -19,96 +19,106 @@
       <div>
         <div>性别</div>
         <div>
-          <input @change="sexBtn" type="radio" id="nan" name="sex" value="1" :checked="sex===1" />
+          <input @change="sexBtn(1)" type="radio" id="nan" name="sex" value="1" :checked="sex===1" />
           <label for="nan" class="nan">男</label>
-          <input @change="sexBtn" type="radio" id="nv" name="sex" value="2" :checked="sex===2" />
+          <input @change="sexBtn(2)" type="radio" id="nv" name="sex" value="2" :checked="sex===2" />
           <label for="nv">女</label>
         </div>
       </div>
-      <div>
+      <div @click="openPicker">
         <div>出生日期</div>
-        <div @click="setDateTime">
+        <div>
           <div class="weui-cells vux-no-group-title">
             <div class="vux-datetime weui-cell weui-cell_access" id="vux-datetime-aajxt">
               <div class="weui-cell__ft vux-cell-primary vux-datetime-value">
-                <span class="vux-cell-value">2018-10-25 10</span>
+                <span class="vux-cell-value">{{birthdateValue}}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div>
+      <div @click="addressPicker">
         <div>所在地</div>
         <div>
           <div>
-            <!---->
             <div class="weui-cells vux-no-group-title">
               <div class="vux-cell-box">
                 <div class="weui-cell vux-tap-active weui-cell_access">
                   <div class="weui-cell__hd">
-                    <!---->
-                    <!---->
                   </div>
                   <div class="vux-cell-primary vux-popup-picker-select-box">
                     <div class="vux-popup-picker-select" style="text-align: right;">
-                      <!---->
-                      <!---->
-                      <span class="vux-popup-picker-value vux-cell-value">北京市 市辖区 东城区</span>
-                      <!---->
+                      <span class="vux-popup-picker-value vux-cell-value">{{addressValue}}</span>
                     </div>
                   </div>
                   <div class="weui-cell__ft"></div>
                 </div>
-                <!---->
               </div>
             </div>
-            <!---->
           </div>
         </div>
       </div>
       <div>
         <div>手机号</div>
         <div>
-          <input type="text" placeholder="请输入你的电话" class="shu" />
-          <span class="gen">更改</span>
+          <input type="text" placeholder="请输入你的电话" class="shu" v-model="phone" />
+          <span class="gen" @click="doEditPhone">更改</span>
         </div>
       </div>
       <div class="phone-input">
-        <input type="text" placeholder="请输入验证码" />
+        <input type="text" placeholder="请输入验证码" v-model="code" />
         <button class="phone-input-code">获取验证码</button>
       </div>
     </div>
     <div class="quickquestion-btn">
-      <div>完成</div>
+      <div @click="modifyMessage">完成</div>
     </div>
+
+    <mt-datetime-picker @confirm="handleConfirm" year-format="{value}" month-format="{value}" date-format="{value}" hour-format="{value}" ref="picker" type="datetime" v-model="pickerValue">
+    </mt-datetime-picker>
+    <div class="mask" v-if="maskFlag">
+      <div class="address-box">
+        <div class="a-btn">
+          <div class="btn" @click="addressCancal">取消</div>
+          <div class="btn" @click="addressSure">确认</div>
+        </div>
+        <div class="location_container">
+          <mt-picker :slots="myAddressSlots" @change="onAddressChange"></mt-picker>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </template>
 
 <script>
-import Group from "vux/src/components/group/index.vue";
-import Datetime from "vux/src/components/datetime/index.vue";
-import XAddress from "vux/src/components/x-address/index.vue";
-import ChinaAddressV4Data from "vux/src/datas/china_address_v4.json";
-import value2name from "vux/src/filters/value2name.js";
-import Alert from "vux/src/components/alert/index.vue";
+import { DatetimePicker, MessageBox, Toast, Picker } from "mint-ui";
 
+import {
+  city,
+  privinceList,
+  cityList,
+  districtList
+} from "@/static/js/address";
+import moment from "moment";
 export default {
   components: {
-    Group,
-    Datetime,
-    XAddress,
-    Alert
+    mtDatetimePicker: DatetimePicker,
+    mtPicker: Picker
   },
 
   data() {
     return {
+      pickerValue: "",
+      maskFlag: false,
+
       src:
         "http://kccdn.ywhwl.com/img/yqpWrTTVVo7ReytWmFhsemzbS4U5KPA3FjKDLlbW.png", //先设置一个默认图片
       birthdate: "2018-10-25 10",
       birthdateValue: "",
       address: ["110000", "110100", "110101"],
       addressValue: "",
-      addressData: ChinaAddressV4Data,
       showAddress: false,
       sex: 1,
       phone: this.$store.state.useMessage.phone,
@@ -120,10 +130,139 @@ export default {
       loginCode: "",
       timeNum: "获取验证码",
       currentTime: 61,
-      disabled: false
+      disabled: false,
+
+      city,
+      privinceList,
+      cityList,
+      districtList,
+
+      myprivinceList: [], //省的数组
+      mycityList: [], //省对应城市的数组
+      mydistrictList: [], //区或者县的数组
+      areapicker: "",
+      myAddressSlots: [
+        {
+          flex: 1,
+          defaultIndex: 0,
+          values: privinceList, //省份数组
+          className: "slot1",
+          textAlign: "center"
+        },
+        {
+          pider: true,
+          content: "-",
+          className: "slot2"
+        },
+        {
+          flex: 1,
+          defaultIndex: 0,
+          values: cityList,
+          className: "slot3",
+          textAlign: "center"
+        },
+        {
+          pider: true,
+          content: "-",
+          className: "slot4"
+        },
+        {
+          flex: 1,
+          defaultIndex: 0,
+          values: districtList,
+          className: "slot5",
+          textAlign: "center"
+        }
+      ],
+      myAddressPrivince: "", //最后选中的省或直辖市
+      myAddressCity: "", //最后选中的城市
+      myAddressDistrict: "" //最后选中的区或者县
     };
   },
+  watch: {
+    myAddressPrivince(oldval, newval) {
+      //省数据变化后，更新市的显示数据
+      this.areapicker.setSlotValues(2, this.mycityList);
+      this.areapicker.setSlotValue(2, this.mycityList[0]);
+      console.log("选中的省是" + this.myAddressPrivince);
+    },
+    myAddressCity(oldval, newval) {
+      //城市的值改变后，重置区县的数据
+      this.areapicker.setSlotValues(4, this.mydistrictList);
+      this.areapicker.setSlotValue(4, this.mydistrictList[0]);
+      console.log("选中的市是" + this.myAddressCity);
+    },
+    myAddressDistrict(oldval, newval) {
+      console.log("选中的区是" + this.myAddressDistrict);
+    }
+  },
+
   methods: {
+    onAddressChange: function(picker, values) {
+      this.areapicker = picker;
+      this.mycityList = [];
+      this.mydistrictList = [];
+      var chooseList = city.filter(function(item) {
+        return item.name == values[0];
+      });
+      if (chooseList[0].sub) {
+        for (var item of chooseList[0].sub) {
+          this.mycityList.push(item.name);
+        }
+        //获取非直辖市数据
+        if (chooseList[0].sub.length > 1) {
+          var choosedisList = [];
+          if (this.mycityList.indexOf(values[2]) > -1 && values[2] != "其他") {
+            choosedisList = chooseList[0].sub.filter(function(item) {
+              return item.name == values[2];
+            });
+            for (var item of choosedisList[0].sub) {
+              this.mydistrictList.push(item.name);
+            }
+          } else {
+            this.mydistrictList = [];
+          }
+        } else {
+          //获取直辖市数据
+          for (var item of chooseList[0].sub[0].sub) {
+            this.mydistrictList.push(item.name);
+          }
+        }
+      }
+      this.myAddressPrivince = values[0];
+      this.myAddressCity = values[2];
+      this.myAddressDistrict = values[4];
+
+      console.log(this.myAddressPrivince);
+      console.log(this.myAddressCity);
+      console.log(this.myAddressDistrict);
+    },
+    openPicker() {
+      this.$refs.picker.open();
+    },
+    handleConfirm() {
+      if (this.pickerValue) {
+        this.birthdate = moment(this.pickerValue).format("YYYY-MM-DD HH");
+        MessageBox.confirm("阳历  " + this.birthdate + "时")
+          .then(action => {
+            this.birthdateValue = this.birthdate + "时";
+          })
+          .catch(() => {
+            Toast({
+              message: "请选择您的阳历生日",
+              position: "bottom",
+              duration: 2000
+            });
+          });
+      } else {
+        Toast({
+          message: "请选择您的阳历生日",
+          position: "bottom",
+          duration: 2000
+        });
+      }
+    },
+
     getCode() {
       if (this.phone) {
         var interval = setInterval(() => {
@@ -139,35 +278,46 @@ export default {
         }, 1000);
         this.$http.post("alisms_send", { tel: this.phone }).then(res => {
           if (res.data.ResultCode == 400) {
-            this.$vux.alert.show({
-              content: "同个号码使用次数过多"
+            Toast({
+              message: "同个号码使用次数过多",
+              position: "bottom",
+              duration: 2000
             });
           } else {
             this.loginCode = res.data.data;
           }
         });
       } else {
-        this.$vux.alert.show({
-          content: "请输入手机号码"
+        Toast({
+          message: "请输入手机号码",
+          position: "bottom",
+          duration: 2000
         });
       }
     },
     doEditPhone() {
       if (!this.phone) {
-        this.$vux.alert.show({
-          content: "请输入手机号码"
+        Toast({
+          message: "请输入手机号码",
+          position: "bottom",
+          duration: 2000
         });
         return;
       }
       if (!this.code) {
-        this.$vux.alert.show({
-          content: "请输入验证码"
+        Toast({
+          message: "请输入验证码",
+          position: "bottom",
+          duration: 2000
         });
+
         return;
       }
       if (this.code != this.loginCode) {
-        this.$vux.alert.show({
-          content: "验证码输入错误"
+        Toast({
+          message: "验证码输入错误",
+          position: "bottom",
+          duration: 2000
         });
         return;
       }
@@ -180,14 +330,17 @@ export default {
         .then(res => {
           if (res.data.code == 200) {
             this.$store.commit("upStatePhone", this.phone);
-            this.$vux.alert.show({
-              content: "更改成功"
+            Toast({
+              message: "更改成功",
+              position: "bottom",
+              duration: 2000
             });
           }
         });
     },
 
     getFile(e) {
+      console.log(e);
       let _this = this;
       _this.files = e.target.files[0];
       this.shang = true;
@@ -203,64 +356,35 @@ export default {
       this.sex = e;
     },
 
-    change(value) {},
-
-    computeHoursFunction(date, isToday, generateRange) {
-      if (isToday) {
-        return generateRange(new Date().getHours(), 23);
-      } else {
-        return generateRange(0, 23);
-      }
-    },
-    onShadowChange(ids, names) {
-      console.log(ids, names);
-      this.addressValue = names;
-      this.address = ids;
-    },
-    logHide(str) {},
-    logShow(str) {},
-    confirmDate(e) {
-      var that = this;
-      that.$vux.confirm.show({
-        content: "阳历  " + that.birthdate + "时",
-        onCancel() {
-          that.birthdate = "";
-          that.birthdateValue = "";
-          that.$vux.alert.show({
-            content: "请选择您的阳历生日"
-          });
-        },
-        onConfirm() {
-          that.birthdateValue = that.birthdate + "时";
-        }
-      });
-    },
-
     modifyMessage() {
       if (!this.name) {
-        this.$vux.alert.show({
-          content: "请输入名字"
+        Toast({
+          message: "请输入名字",
+          position: "bottom",
+          duration: 2000
         });
         return;
       }
       if (!this.birthdateValue) {
-        this.$vux.alert.show({
-          content: "请选择您的阳历生日"
+        Toast({
+          message: "请选择您的阳历生日",
+          position: "bottom",
+          duration: 2000
         });
         return;
       }
 
       var provinceValue = JSON.stringify({
         key: this.address["0"],
-        value: this.addressValue["0"]
+        value: this.myAddressPrivince
       });
       var cityValue = JSON.stringify({
         key: this.address["1"],
-        value: this.addressValue["1"]
+        value: this.myAddressCity
       });
       var districtValue = JSON.stringify({
         key: this.address["2"],
-        value: this.addressValue["2"]
+        value: this.myAddressDistrict
       });
 
       var formdata = new FormData();
@@ -298,20 +422,39 @@ export default {
           this.$store.commit("upState", arr);
 
           var that = this;
-          that.$vux.alert.show({
-            content: "设置成功",
-            onHide() {
-              that.$router.go(-1);
-            }
+
+          Toast({
+            message: "设置成功",
+            position: "bottom",
+            duration: 2000
           });
+
+          setTimeout(() => {
+            that.$router.go(-1);
+          }, 1000);
         });
+    },
+
+    addressPicker() {
+      this.maskFlag = true;
+    },
+    addressCancal() {
+      this.maskFlag = false;
+    },
+    addressSure() {
+      console.log(this.myAddressPrivince);
+      console.log(this.myAddressCity);
+      console.log(this.myAddressDistrict);
+      this.maskFlag = false;
+      this.addressValue =
+        this.myAddressPrivince + this.myAddressCity + this.myAddressDistrict;
     }
   },
   created() {
     if (this.$store.state.useMessage.birthday) {
       this.birthdateValue = this.$store.state.useMessage.birthday;
-      var birthday = this.$store.state.useMessage.birthday;
-      this.birthdate = birthday.substring(0, birthday.length - 1);
+      this.birthday = this.$store.state.useMessage.birthday;
+      // this.birthdate = birthday.substring(0, birthday.length - 1);
     }
     if (this.$store.state.useMessage.avatarUrl) {
       this.src = this.$store.state.useMessage.avatarUrl;
@@ -325,19 +468,20 @@ export default {
       this.$store.state.useMessage.district
     ) {
       this.address = [];
-      this.addressValue = [];
+
       this.address.push(JSON.parse(this.$store.state.useMessage.province).key);
       this.address.push(JSON.parse(this.$store.state.useMessage.city).key);
       this.address.push(JSON.parse(this.$store.state.useMessage.district).key);
-      this.addressValue.push(
-        JSON.parse(this.$store.state.useMessage.province).value
-      );
-      this.addressValue.push(
-        JSON.parse(this.$store.state.useMessage.city).value
-      );
-      this.addressValue.push(
-        JSON.parse(this.$store.state.useMessage.district).value
-      );
+
+      this.myAddressPrivince = JSON.parse(
+        this.$store.state.useMessage.province
+      ).value;
+      this.myAddressCity = JSON.parse(this.$store.state.useMessage.city).value;
+      this.myAddressDistrict = JSON.parse(
+        this.$store.state.useMessage.district
+      ).value;
+      this.addressValue =
+        this.myAddressPrivince + this.myAddressCity + this.myAddressDistrict;
     }
     if (this.$store.state.useMessage.gender) {
       this.sex = this.$store.state.useMessage.gender;
@@ -345,15 +489,55 @@ export default {
     if (this.$store.state.useMessage.avatarUrl) {
       this.src = this.$store.state.useMessage.avatarUrl;
     }
+  },
+
+  mounted() {
+    this.$nextTick(() => {
+      //vue里面全部加载好了再执行的函数 （类似于setTimeout）
+      this.myAddressSlots[0].defaultIndex = 0;
+    });
   }
 };
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .showPicker {
   display: block !important;
 }
 .hidePicker {
   display: none !important;
+}
+.mask {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  .address-box {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0 3px 10px 0 rgba(27, 27, 78, 0.08);
+
+    .a-btn {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: solid 1px #eaeaea;
+      .btn {
+        display: inline-block;
+        width: 50%;
+        text-align: center;
+        line-height: 40px;
+        font-size: 16px;
+        color: #26a2ff;
+      }
+    }
+  }
+  .location_container {
+    height: 220px;
+  }
 }
 </style>

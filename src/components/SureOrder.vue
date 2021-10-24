@@ -54,7 +54,7 @@
     </div>
     <!---->
     <div class="quickquestion-btn">
-      <form method="post" action="http://kc.ywhwl.com/api/wap_pay" @submit.prevent="setOrdNumber">
+      <form method="post" action="http://kc.ywhwl.com/api/wap_pay" @submit="setOrdNumber">
         <input type="hidden" name="cate_id" v-model="classifyId" />
         <input type="hidden" name="mem_id" v-model="men_id" />
         <input type="hidden" name="ord_type" v-model="ord_type" />
@@ -108,13 +108,7 @@ export default {
   },
 
   methods: {
-    check() {
-      if (0) {
-        return true; //return true; 时,表单将提交
-      } else {
-        return false; //return false; 时,表单不提交
-      }
-    },
+   
 
     // 验证登陆
     checkLogin: function(e) {
@@ -142,6 +136,7 @@ export default {
         return;
       }
       if (this.men_id) {
+        console.log(11)
         localStorage.setItem("ord_number", this.timestamp);
         return true;
       }

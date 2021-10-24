@@ -7,7 +7,7 @@ import SelectQuestion from '@/components/SelectQuestion'
 import SelectMaster from '@/components/SelectMaster'
 import SureOrder from '@/components/SureOrder'
 // import PaySuccess from '@/components/PaySuccess'
-// import CreatArchives from '@/components/CreatArchives'
+import CreatArchives from '@/components/CreatArchives'
 // import SelectArchives from '@/components/SelectArchives'
 import SearchMaster from '@/components/SearchMaster'
 import MasterList from '@/components/MasterList'
@@ -23,16 +23,16 @@ import TopicDetail from '@/components/TopicDetail'
 // import EvaluateFinshed from '@/components/EvaluateFinshed'
 import Feedback from '@/components/Feedback'
 import AboutUs from '@/components/AboutUs'
-// import TodayFortune from '@/components/TodayFortune'
-// import ArchivesDetail from '@/components/ArchivesDetail'
-// import PersonArchives from '@/components/PersonArchives'
+import TodayFortune from '@/components/TodayFortune'
+import ArchivesDetail from '@/components/ArchivesDetail'
+import PersonArchives from '@/components/PersonArchives'
 // import PersonCoupon from '@/components/PersonCoupon'
 
 import Phone from '@/components/Phone'
 import ShortcutPhone from '@/components/ShortcutPhone'
 import Login from '@/components/Login'
 import PersonSet from '@/components/PersonSet'
-// import FollowTeacher from '@/components/FollowTeacher'
+import FollowTeacher from '@/components/FollowTeacher'
 // import Test from '@/components/Test'
 Vue.use(Router)
 
@@ -48,12 +48,12 @@ const router = new Router({
     //   meta: { title: "快速提问" },
     //   component: Test
     // },
-    // {
-    //   path: '/followTeacher',
-    //   name: 'followTeacher',
-    //   meta: { title: "关注老师" },
-    //   component: FollowTeacher
-    // },
+    {
+      path: '/followTeacher',
+      name: 'followTeacher',
+      meta: { title: "关注老师" },
+      component: FollowTeacher
+    },
     {
       path: '/personSet',
       name: 'personSet',
@@ -90,18 +90,18 @@ const router = new Router({
     //   meta: { title: "优惠卷" },
     //   component: PersonCoupon
     // },
-    // {
-    //   path: '/personArchives',
-    //   name: 'personArchives',
-    //   meta: { title: "八字档案" },
-    //   component: PersonArchives
-    // },
-    // {
-    //   path: '/archivesDetail',
-    //   name: 'archivesDetail',
-    //   meta: { title: "八字档案" },
-    //   component: ArchivesDetail
-    // },
+    {
+      path: '/personArchives',
+      name: 'personArchives',
+      meta: { title: "八字档案" },
+      component: PersonArchives
+    },
+    {
+      path: '/archivesDetail',
+      name: 'archivesDetail',
+      meta: { title: "八字档案" },
+      component: ArchivesDetail
+    },
     {
       path: '/home',
       name: 'home',
@@ -158,12 +158,12 @@ const router = new Router({
     //   meta: { title: "确定订单" },
     //   component: PaySuccess
     // },
-    // {
-    //   path: '/creatArchives',
-    //   name: 'creatArchives',
-    //   meta: { title: "新建档案" },
-    //   component: CreatArchives
-    // },
+    {
+      path: '/creatArchives',
+      name: 'creatArchives',
+      meta: { title: "新建档案" },
+      component: CreatArchives
+    },
     // {
     //   path: '/selectArchives',
     //   name: 'selectArchives',
@@ -258,12 +258,12 @@ const router = new Router({
       },
       component: AboutUs
     },
-    // {
-    //   path: '/todayFortune',
-    //   name: 'todayFortune',
-    //   meta: { title: "今日运势" },
-    //   component: TodayFortune
-    // }
+    {
+      path: '/todayFortune',
+      name: 'todayFortune',
+      meta: { title: "今日运势" },
+      component: TodayFortune
+    }
   ]
 })
 
