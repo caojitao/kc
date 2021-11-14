@@ -6,9 +6,9 @@ import PersonalCenter from '@/components/PersonalCenter'
 import SelectQuestion from '@/components/SelectQuestion'
 import SelectMaster from '@/components/SelectMaster'
 import SureOrder from '@/components/SureOrder'
-// import PaySuccess from '@/components/PaySuccess'
+import PaySuccess from '@/components/PaySuccess'
 import CreatArchives from '@/components/CreatArchives'
-// import SelectArchives from '@/components/SelectArchives'
+import SelectArchives from '@/components/SelectArchives'
 import SearchMaster from '@/components/SearchMaster'
 import MasterList from '@/components/MasterList'
 import MasterDetail from '@/components/MasterDetail'
@@ -16,8 +16,8 @@ import Topic from '@/components/Topic'
 import TopicDetail from '@/components/TopicDetail'
 
 // import Coupon from '@/components/Coupon'
-// import Order from '@/components/Order'
-// import OrderDetail from '@/components/OrderDetail'
+import Order from '@/components/Order'
+import OrderDetail from '@/components/OrderDetail'
 // import OrderFinshed from '@/components/OrderFinshed'
 // import Evaluate from '@/components/Evaluate'
 // import EvaluateFinshed from '@/components/EvaluateFinshed'
@@ -152,24 +152,24 @@ const router = new Router({
       },
       component: SureOrder
     },
-    // {
-    //   path: '/paySuccess',
-    //   name: 'paySuccess',
-    //   meta: { title: "确定订单" },
-    //   component: PaySuccess
-    // },
+    {
+      path: '/paySuccess',
+      name: 'paySuccess',
+      meta: { title: "确定订单" },
+      component: PaySuccess
+    },
     {
       path: '/creatArchives',
       name: 'creatArchives',
       meta: { title: "新建档案" },
       component: CreatArchives
     },
-    // {
-    //   path: '/selectArchives',
-    //   name: 'selectArchives',
-    //   meta: { title: "选择档案" },
-    //   component: SelectArchives
-    // },
+    {
+      path: '/selectArchives',
+      name: 'selectArchives',
+      meta: { title: "选择档案" },
+      component: SelectArchives
+    },
     {
       path: '/searchMaster',
       name: 'searchMaster',
@@ -214,18 +214,18 @@ const router = new Router({
     //   meta: { title: "优惠券" },
     //   component: Coupon
     // },
-    // {
-    //   path: '/order',
-    //   name: 'order',
-    //   meta: { title: "咨询订单" },
-    //   component: Order
-    // },
-    // {
-    //   path: '/orderDetail',
-    //   name: 'orderDetail',
-    //   meta: { title: "咨询订单" },
-    //   component: OrderDetail
-    // },
+    {
+      path: '/order',
+      name: 'order',
+      meta: { title: "咨询订单" },
+      component: Order
+    },
+    {
+      path: '/orderDetail',
+      name: 'orderDetail',
+      meta: { title: "咨询订单" },
+      component: OrderDetail
+    },
     // {
     //   path: '/orderFinshed',
     //   name: 'orderFinshed',

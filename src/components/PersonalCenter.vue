@@ -43,7 +43,7 @@
             </div>
             <div class="ordertext">
               全部订单
-              <!---->
+              <div class="ordernum" v-if="orderNum">{{orderNum}}</div>
             </div>
           </div>
           <div class="personalcenter-bottom-list-right">
@@ -364,7 +364,7 @@ export default {
           })
           .then(res => {
             if (res.data.code == 10002) {
-            this.isPhone = true;
+              this.isPhone = true;
             } else if (res.data.code == 200) {
               var useMessage = res.data.data;
               this.useMessage = res.data.data;
@@ -373,8 +373,9 @@ export default {
             }
           });
       } else {
+        console.log(url);
         window.location.href =
-          "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx77be7b1c86a6a375&redirect_uri=" +
+          "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx54fa7941f2145a21&redirect_uri=" +
           url +
           "&response_type=code&scope=snsapi_userinfo&state=" +
           gid +
@@ -471,6 +472,7 @@ export default {
           console.log(res);
           if (res.data.code == 200) {
             this.orderNum = res.data.data;
+            console.log(this.orderNum)
           }
         });
 
