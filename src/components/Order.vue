@@ -17,6 +17,8 @@
                                 <div class="order-list-center-img">
                                     <img src="../assets/o1.png" v-if="item.ord_type===1">
                                     <img src="../assets/o2.png" v-if="item.ord_type===0">
+                                    <img src="../assets/o3.png" v-if="item.ord_type===2">
+                                    <img src="../assets/o4.png" v-if="item.ord_type===3">
                                 </div>
                                 <div class="order-list-center-text">
                                     <div class="order-list-center-text-title">{{item.show_title}}</div>
@@ -38,7 +40,7 @@
                 <div class="order-list-bottom">
                     <div class="order-list-bottom-btn">
                         <a :href='"#/orderDetail?id="+item.order_id' class="order-list-bottom-btn-right" v-if="item.bazi_id">查看详情</a>
-                        <a :href='"#/selectArchives?ord_id"+item.order_id' class="order-list-bottom-btn-right" v-if="!item.bazi_id">填写八字</a>
+                        <a :href='"#/selectArchives?ord_id="+item.order_id' class="order-list-bottom-btn-right" v-if="!item.bazi_id">填写八字</a>
                     </div>
                 </div>
             </div>
@@ -47,6 +49,7 @@
     </div>
 </template>
 <script>
+import { MessageBox, Toast } from "mint-ui";
 export default {
   data() {
     return {
@@ -139,9 +142,13 @@ export default {
             })
             .then(res => {
               if (res.data.code == 200) {
-                that.$vux.alert.show({
-                  content: "删除成功"
-                });
+               
+                
+            Toast({
+              message: "删除成功",
+              position: "bottom",
+              duration: 1000
+            });
               }
               if (that.navValue == 1) {
                 that.orderNofinshedList = that.orderNofinshedList.filter(

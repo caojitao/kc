@@ -212,9 +212,12 @@ export default {
             })
             .then(res => {
               if (res.data.code == 200) {
-                that.$vux.alert.show({
-                  content: "删除成功"
-                });
+              
+                 Toast({
+              message: "删除成功",
+              position: "bottom",
+              duration: 1000
+            });
               }
               that.orderList = that.orderList.filter(item => {
                 return item.id != id;

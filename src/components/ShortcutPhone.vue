@@ -102,7 +102,7 @@
 
 <script>
 import Clipboard from "clipboard";
-import { Toast } from "mint-ui";
+import { Toast,MessageBox } from "mint-ui";
 export default {
   data() {
     return {
@@ -126,9 +126,12 @@ export default {
         /*复制成功回调*/
         clipboardDemos.on("success", function(e) {
           e.clearSelection();
-          that.$vux.alert.show({
-            content: "复制成功"
-          });
+        
+          Toast({
+              message: "复制成功",
+              position: "bottom",
+              duration: 1000
+            });
           clipboardDemos.destroy();
         });
         /*复制失败回调*/
@@ -138,9 +141,12 @@ export default {
       } else {
         /*浏览器不支持时，进入手动复制方法*/
 
-        that.$vux.alert.show({
-          content: "您的浏览器暂不支持此功能！请手动复制"
-        });
+       
+           Toast({
+              message: "您的浏览器暂不支持此功能！请手动复制",
+              position: "bottom",
+              duration: 1000
+            });
       }
     },
 
@@ -166,9 +172,12 @@ export default {
 
     reSureOrder() {
       if (!this.myPhone) {
-        this.$vux.alert.show({
-          content: "请填写手机号码"
-        });
+       
+           Toast({
+              message: "请填写手机号码",
+              position: "bottom",
+              duration: 1000
+            });
         return;
       }
       var arr = this.list2;

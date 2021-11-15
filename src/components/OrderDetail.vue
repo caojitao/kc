@@ -59,7 +59,7 @@
             </div>
         </div>
         <div class="orderdetail-btn">
-            <!---->
+            <div class="liaotian" @click="liantian(orderDetail.kefu_url)" v-if="orderDetail.kefu_url">联系老师</div>
             <div @click="tanBlack">取消订单</div>
         </div>
         <div class="orderdetail-tip">
