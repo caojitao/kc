@@ -26,9 +26,12 @@
                 </div>
                 <div class="orderdetail-message-person-text">
                     <span>出生地点：</span>
-                    <span>中国 {{orderDetail.bazi_area.value}}</span>
+                    <span>中国 {{orderDetail.bazi_area}}</span>
                 </div>
-                <!---->
+                 <div class="orderfinshed-message-person-text" v-if="orderDetail.allow_phone">
+                    <span>联系电话：</span>
+                    <span>{{orderDetail.allow_phone}}</span>
+                </div>
             </div>
             <div class="orderdetail-message-order">
                 <div class="orderdetail-message-order-title">订单信息</div>
@@ -43,7 +46,6 @@
                 <div class="orderdetail-message-order-text">
                     <span>提问问题：</span>
                     <span>{{orderDetail.title}}</span>
-                    <!---->
                 </div>
                 <div class="orderdetail-message-order-text-num orderdetail-message-order-text-num-one">
                     <span>下单时间：</span>

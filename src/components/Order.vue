@@ -1,52 +1,91 @@
 <template>
-    <div class="order" ref="orderBox">
-        <div class="order-nav">
-            <div class="select">未完成</div>
-            <div class="">已完成</div>
-        </div>
-        <div class="order-unfinished">
-            <div class="order-list" v-for="(item,index) in orderNofinshedList" :key="index">
-                <div class="order-list-top">
-                    <div>{{item.order_type_name}}</div>
-                    <div>待答复</div>
-                </div>
-                <div class="delete">
-                    <div class="slider" ref="remove" @touchstart="(e)=>touchStart(e,item.order_id)" @touchmove="(e)=>touchMove(e,item.order_id)" @touchend="(e)=>touchEnd(e,item.order_id)">
-                        <div :class="id===item.order_id?'content deleteSlider':'content'">
-                            <div class="order-list-center">
-                                <div class="order-list-center-img">
-                                    <img src="../assets/o1.png" v-if="item.ord_type===1">
-                                    <img src="../assets/o2.png" v-if="item.ord_type===0">
-                                    <img src="../assets/o3.png" v-if="item.ord_type===2">
-                                    <img src="../assets/o4.png" v-if="item.ord_type===3">
-                                </div>
-                                <div class="order-list-center-text">
-                                    <div class="order-list-center-text-title">{{item.show_title}}</div>
-                                    <div class="order-list-center-text-type">{{item.link_cate_table.name}}</div>
-                                    <div class="order-list-center-text-num">
-                                        <span>{{item.created_at}}</span>
-                                        <span>￥{{item.ord_price}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="remove" @click="del(item.order_id)">
-                            <div class="removebg">
-                                <span>删除</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-list-bottom">
-                    <div class="order-list-bottom-btn">
-                        <a :href='"#/orderDetail?id="+item.order_id' class="order-list-bottom-btn-right" v-if="item.bazi_id">查看详情</a>
-                        <a :href='"#/selectArchives?ord_id="+item.order_id' class="order-list-bottom-btn-right" v-if="!item.bazi_id">填写八字</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!---->
+  <div class="order" ref="orderBox">
+    <div class="order-nav">
+      <div :class="navValue===1?'select':''" @click="toggleNav(1)">未完成</div>
+      <div :class="navValue===2?'select':''" @click="toggleNav(2)">已完成</div>
     </div>
+    <div class="order-unfinished">
+      <div class="order-list" v-for="(item,index) in orderNofinshedList" :key="index">
+        <div class="order-list-top">
+          <div>{{item.order_type_name}}</div>
+          <div>待答复</div>
+        </div>
+        <div class="delete">
+          <div class="slider" ref="remove" @touchstart="(e)=>touchStart(e,item.order_id)" @touchmove="(e)=>touchMove(e,item.order_id)" @touchend="(e)=>touchEnd(e,item.order_id)">
+            <div :class="id===item.order_id?'content deleteSlider':'content'">
+              <div class="order-list-center">
+                <div class="order-list-center-img">
+                  <img src="../assets/o1.png" v-if="item.ord_type===1">
+                  <img src="../assets/o2.png" v-if="item.ord_type===0">
+                  <img src="../assets/o3.png" v-if="item.ord_type===2">
+                  <img src="../assets/o4.png" v-if="item.ord_type===3">
+                </div>
+                <div class="order-list-center-text">
+                  <div class="order-list-center-text-title">{{item.show_title}}</div>
+                  <div class="order-list-center-text-type">{{item.link_cate_table.name}}</div>
+                  <div class="order-list-center-text-num">
+                    <span>{{item.created_at}}</span>
+                    <span>￥{{item.ord_price}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="remove" @click="del(item.order_id)">
+              <div class="removebg">
+                <span>删除</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="order-list-bottom">
+          <div class="order-list-bottom-btn">
+            <a :href='"#/orderDetail?id="+item.order_id' class="order-list-bottom-btn-right" v-if="item.bazi_id">查看详情</a>
+            <a :href='"#/selectArchives?ord_id="+item.order_id' class="order-list-bottom-btn-right" v-if="!item.bazi_id">填写八字</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="order-unfinished">
+      <div class="order-list" v-for="(item,index) in orderFinshedList" :key="index">
+        <div class="order-list-top">
+          <div>{{item.order_type_name}}</div>
+          <div>已结束</div>
+        </div>
+        <div class="delete">
+          <div class="slider" ref="remove" @touchstart="(e)=>touchStart(e,item.order_id)" @touchmove="(e)=>touchMove(e,item.order_id)" @touchend="(e)=>touchEnd(e,item.order_id)">
+            <div :class="id===item.order_id?'content deleteSlider':'content'">
+              <div class="order-list-center">
+                <div class="order-list-center-img">
+                  <img src="../assets/o1.png" v-if="item.ord_type===1">
+                  <img src="../assets/o2.png" v-if="item.ord_type===0">
+                  <img src="../assets/o3.png" v-if="item.ord_type===2">
+                  <img src="../assets/o4.png" v-if="item.ord_type===3">
+                </div>
+                <div class="order-list-center-text">
+                  <div class="order-list-center-text-title">{{item.show_title}}</div>
+                  <div class="order-list-center-text-type">{{item.link_cate_table.name}}</div>
+                  <div class="order-list-center-text-num">
+                    <span>{{item.created_at}}</span>
+                    <span>￥{{item.ord_price}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="remove" @click="del(item.order_id)">
+              <div class="removebg">
+                <span>删除</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="order-list-bottom">
+          <div class="order-list-bottom-btn">
+            <a :href='"#/orderFinshed?id="+item.order_id' class="order-list-bottom-btn-right" >查看详情</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 import { MessageBox, Toast } from "mint-ui";
@@ -142,13 +181,11 @@ export default {
             })
             .then(res => {
               if (res.data.code == 200) {
-               
-                
-            Toast({
-              message: "删除成功",
-              position: "bottom",
-              duration: 1000
-            });
+                Toast({
+                  message: "删除成功",
+                  position: "bottom",
+                  duration: 1000
+                });
               }
               if (that.navValue == 1) {
                 that.orderNofinshedList = that.orderNofinshedList.filter(

@@ -18,9 +18,9 @@ import TopicDetail from '@/components/TopicDetail'
 // import Coupon from '@/components/Coupon'
 import Order from '@/components/Order'
 import OrderDetail from '@/components/OrderDetail'
-// import OrderFinshed from '@/components/OrderFinshed'
-// import Evaluate from '@/components/Evaluate'
-// import EvaluateFinshed from '@/components/EvaluateFinshed'
+import OrderFinshed from '@/components/OrderFinshed'
+import Evaluate from '@/components/Evaluate'
+import EvaluateFinshed from '@/components/EvaluateFinshed'
 import Feedback from '@/components/Feedback'
 import AboutUs from '@/components/AboutUs'
 import TodayFortune from '@/components/TodayFortune'
@@ -226,24 +226,24 @@ const router = new Router({
       meta: { title: "咨询订单" },
       component: OrderDetail
     },
-    // {
-    //   path: '/orderFinshed',
-    //   name: 'orderFinshed',
-    //   meta: { title: "咨询订单" },
-    //   component: OrderFinshed
-    // },
-    // {
-    //   path: '/evaluate',
-    //   name: 'evaluate',
-    //   meta: { title: "评价" },
-    //   component: Evaluate
-    // },
-    // {
-    //   path: '/evaluateFinshed',
-    //   name: 'evaluateFinshed',
-    //   meta: { title: "评价" },
-    //   component: EvaluateFinshed
-    // },
+    {
+      path: '/orderFinshed',
+      name: 'orderFinshed',
+      meta: { title: "咨询订单" },
+      component: OrderFinshed
+    },
+    {
+      path: '/evaluate',
+      name: 'evaluate',
+      meta: { title: "评价" },
+      component: Evaluate
+    },
+    {
+      path: '/evaluateFinshed',
+      name: 'evaluateFinshed',
+      meta: { title: "评价" },
+      component: EvaluateFinshed
+    },
     {
       path: '/feedback',
       name: 'feedback',
